@@ -29,6 +29,9 @@ public class BaseEntity implements Serializable {
     @ApiModelProperty(value="备注",name="remark")
     private String remark;
 
+    @ApiModelProperty(value="删除标志",name="deleted",example="0=正常,1=删除")
+    private String deleted;
+
     @ApiModelProperty(value="请求参数",name="params")
     private transient Map<String, Object> params;
 
