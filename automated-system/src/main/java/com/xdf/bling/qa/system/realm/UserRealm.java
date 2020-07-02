@@ -2,6 +2,9 @@ package com.xdf.bling.qa.system.realm;
 
 import com.xdf.bling.qa.common.exception.user.*;
 import com.xdf.bling.qa.system.domain.SysUser;
+import com.xdf.bling.qa.system.service.ISysLoginService;
+import com.xdf.bling.qa.system.service.ISysMenuService;
+import com.xdf.bling.qa.system.service.ISysRoleService;
 import com.xdf.bling.qa.system.util.ShiroUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
@@ -17,7 +20,6 @@ import java.util.Set;
 /**
  * 自定义Realm 处理登录 权限
  *
- * @author ruoyi
  */
 @Slf4j
 public class UserRealm extends AuthorizingRealm {
@@ -29,7 +31,7 @@ public class UserRealm extends AuthorizingRealm {
     private ISysRoleService roleService;
 
     @Autowired
-    private SysLoginService loginService;
+    private ISysLoginService loginService;
 
     /**
      * 授权
@@ -40,14 +42,14 @@ public class UserRealm extends AuthorizingRealm {
 
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
         // 管理员拥有所有权限
-        if (user.isAdmin()) {
+        if (user.getId() == 1) {
             info.addRole("admin");
             info.addStringPermission("*:*:*");
         } else {
             // 角色列表
-            Set<String> roles = roleService.selectRoleKeys(user.getUserId());
+            Set<String> roles = roleService.selectRoleKeys(user.getId());
             // 功能列表
-            Set<String> menus = menuService.selectPermsByUserId(user.getUserId());
+            Set<String> menus = menuService.selectPermsByUserId(user.getId());
             // 角色加入AuthorizationInfo认证对象
             info.setRoles(roles);
             // 权限加入AuthorizationInfo认证对象

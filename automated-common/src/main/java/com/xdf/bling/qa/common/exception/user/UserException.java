@@ -1,6 +1,5 @@
 package com.xdf.bling.qa.common.exception.user;
-
-import com.ruoyi.common.exception.base.BaseException;
+import com.xdf.bling.qa.common.exception.base.BaseException;
 
 /**
  * 用户信息异常类
