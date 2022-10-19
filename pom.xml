@@ -20,7 +20,7 @@
         <lombok.version>1.18.12</lombok.version>
         <swagger.version>2.9.2</swagger.version>
         <druid.version>1.1.23</druid.version>
-        <fastjson.version>2.9.8</fastjson.version>
+        <fastjson.version>2.13.4.1</fastjson.version>
         <hutool.version>4.5.10</hutool.version>
     </properties>
 
